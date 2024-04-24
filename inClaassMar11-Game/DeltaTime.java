@@ -1,4 +1,4 @@
-
+import static java.lang.System.nanoTime;
 
 public class DeltaTime {
 	private final long oneSecond = 1000000000;
@@ -21,11 +21,11 @@ public class DeltaTime {
 		this.drawInterval=oneSecond/this.framesPerSecond;
 		this.delta=0;
 		this.currentTime=0;
-		this.lastTime=System.nanoTime();
+		this.lastTime= nanoTime();
 	}
 	
 	public void update() {
-		this.currentTime = System.nanoTime();
+		this.currentTime = nanoTime();
 		this.delta = this.delta + (this.currentTime - this.lastTime)/this.drawInterval;
 		this.lastTime = this.currentTime;
 	}

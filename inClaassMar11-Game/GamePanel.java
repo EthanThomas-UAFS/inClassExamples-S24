@@ -14,14 +14,25 @@ public class GamePanel extends JPanel implements Runnable{
 	private Thread gameThread;
 	private int framesPerSecond;
 	ArrayList<GameObject> gameObjects;
-	
+
+	Player player;
+	Player player2;
+	Missle missle;
 	
 	public GamePanel() {
 		this.dim = new Dimension(800,600);
 		this.setPreferredSize(dim);
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
+		this.setFocusable(true);
 		this.framesPerSecond=60;
+
+		player = new Player(this);
+		player2 = new Player(this);
+		this.addKeyListener(player);
+
+		missle  = new Missle();
+
 		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(new Block(Color.BLUE,100,100,20,20,20));
 		gameObjects.add(new Ball(Color.GREEN,200,200,40,40,2));
@@ -61,7 +72,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update(double delta) {
 		int index;
 		GameObject g;
-		
+
+		this.player.update();
+		this.missle.update();
 		for(index=0;index<gameObjects.size();index++) {
 			g = gameObjects.get(index);
 			g.update();
@@ -73,7 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		int index;
 		GameObject gm;
-		
+
+		this.player.draw(g);
+		this.missle.draw(g);
 		for(index=0;index<gameObjects.size();index++) {
 			gm = gameObjects.get(index);
 			gm.draw(g);
