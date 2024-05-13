@@ -9,7 +9,7 @@ public class List {
 	
 	public void add(String value) {
 		Node temp = head;
-		Node newNode = new Node(value,null);
+		Node newNode = new inClassApr22.Node(value,null);
 		
 		if(head==null) {
 			head=newNode;
@@ -20,7 +20,36 @@ public class List {
 			temp.next = newNode;
 		}
 	}
-	
+
+	public void remove(String value){
+		Node temp = head;
+		Node previous = temp;
+		Node toRemove = temp;
+		Node after;
+		boolean found = false;
+
+		while(temp!=null){
+			if(temp.value == value){
+				toRemove = temp;
+				found = true;
+			}else if(found == false){
+				previous = temp;
+
+			}else if(found == true){
+				after = temp;
+			}
+
+
+
+		}
+
+	}
+
+	public void push(String str){
+		Node newNode = new Node(str,null);
+		newNode.next = this.head
+	}
+
 	public void show(){
 		Node temp = head;
 		
